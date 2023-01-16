@@ -1,0 +1,6 @@
+*{
+    transition: all 200ms ease-in-out;
+}
+#show-more{
+   display: none;
+}
