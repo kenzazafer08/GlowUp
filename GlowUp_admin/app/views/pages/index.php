@@ -1,11 +1,11 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <div class="w-full h-screen bg-[url('<?=URLROOT?>/public/img/bgg.jpg')] bg-cover bg-center flex flex-col items-center justify-center">
-    <div class="w-[70%] h-[80%] bg-white rounded-lg shadow-lg shadow-black-100 flex"> 
-        <div class=" w-1/2 h-full bg-[url('<?=URLROOT?>/public/img/bgg.jpg')] bg-cover flex flex-col items-center justify-around">
-        <h2 class="text-4xl font-extrabold text-pink-900 text-center font-serif">GlowUp Admin </h2>
+    <div class="w-[70%] sm:h-[80%] h-[50%] bg-white  shadow-lg shadow-black-100 flex"> 
+        <div class="hidden w-1/2 h-full bg-[url('<?=URLROOT?>/public/img/bgg.jpg')] bg-cover sm:flex flex-col items-center justify-around">
+        <h2 class="text-4xl font-extrabold text-white text-center font-serif">GlowUp Admin </h2>
         
         </div>
-        <div class="w-1/2 h-full bg-white bg-cover flex flex-col items-center justify-around">
+<div class="sm:w-1/2 w-full h-full bg-white bg-cover flex flex-col items-center justify-around">
            
 <form class="w-2/3" action="<?=URLROOT?>/pages/dashbord">
   <div class="mb-6">
