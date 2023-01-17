@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-<div class="flex justify-around items-center h-[550px] bg-[url('<?php echo URLROOT; ?>/public/img/butterfly.png')]">
-<div class="flex flex-col justify-center h-[70%] bg-cover bg-center bg-pink-100 w-[30%] rounded-[70%]">
+<div class=" flex justify-around items-center h-[550px] bg-[url('<?php echo URLROOT; ?>/public/img/butterfly.png')]">
+<div class="hidden sm:flex flex-col justify-center h-[70%] bg-cover bg-center bg-pink-100 w-[30%] rounded-[70%]">
    <div class="flex flex-col justify-center h-[90%] bg-cover bg-center bg-pink-800 w-[90%] rounded-[70%]">
 	<img src="<?php echo URLROOT; ?>/public/img/pretty.jpg" class="object-fill h-[90%] w-[90%] rounded-[70%]">
 	</div>
@@ -18,19 +18,19 @@
         <div class="flex items-center hidden duration-200 ease-linear bg-cover bg-center bg-[url('<?php echo URLROOT; ?>/public/img/makeup.jpg')]" data-carousel-item>
            <div class="w-2/4 sm:w-1/4 h-full bg-black flex flex-col justify-center items-center">
 			<p class="text-white text-lg m-8 font-serif">Here you can find all types of makeup that suits your desire</p>
-		    <a class="m-8 py-2 px-4 text-white rounded-lg bg-pink-900 cursor-pointer hover:drop-shadow-xl">MakeUp</a>
+		    <a class="m-8 py-2 px-4 text-white rounded-lg bg-pink-900 cursor-pointer hover:drop-shadow-xl" href="<?=URLROOT?>/Pages/products">MakeUp</a>
 		   </div> 
         </div>
 		<div class="flex  items-center hidden duration-200 ease-linear bg-cover bg-center bg-[url('<?php echo URLROOT; ?>/public/img/skin.jpg')]" data-carousel-item>
 		<div class="w-2/4 sm:w-1/4 h-full bg-black flex flex-col justify-center items-center">
 			<p class="text-white text-lg m-8 font-serif">Here you can find all types of Skin care products that suits your desire</p>
-		    <a class="m-8 py-2 px-4 text-white rounded-lg bg-pink-900 cursor-pointer hover:drop-shadow-xl">Skin</a>
+		    <a class="m-8 py-2 px-4 text-white rounded-lg bg-pink-900 cursor-pointer hover:drop-shadow-xl" href="<?=URLROOT?>/Pages/products">Skin</a>
          </div> 
         </div>
 		<div class="flex  items-center hidden duration-200 ease-linear bg-cover bg-center bg-[url('<?php echo URLROOT; ?>/public/img/hair.jpg')]" data-carousel-item>
 		<div class="w-2/4 sm:w-1/4 h-full bg-black flex flex-col justify-center items-center">
 			<p class="text-white text-lg m-8 font-serif">Here you can find all types of hair products that suits your desire</p>
-		    <a class="m-8 py-2 px-4 text-white rounded-lg bg-pink-900 cursor-pointer hover:drop-shadow-xl">Hair</a>
+		    <a class="m-8 py-2 px-4 text-white rounded-lg bg-pink-900 cursor-pointer hover:drop-shadow-xl" href="<?=URLROOT?>/Pages/products">Hair</a>
 		   </div> 
         </div>
     </div>
