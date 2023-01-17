@@ -2,7 +2,7 @@
 <?php require APPROOT . '/views/inc/sidebar.php'; ?>
 <div class="bg-white w-full h-full overflow-auto flex flex-col">
 <div class="w-full flex justify-end items-center m-10 ">
-        <a class="font-bold font-serif text-pink-600 cursor-pointer underline decoration-1 ml-10 mr-20">Add products</a>
+        <a href="<?=URLROOT?>/pages/addproduct"  class="font-bold font-serif text-pink-600 cursor-pointer underline decoration-1 ml-10 mr-20">Add products</a>
     </div>
 <div class="m-4 grid grid-cols-1 sm:grid-cols-3 gap-4 place-items-center">
         <a href="<?= URLROOT ?>/pages/details"><div class="flex flex-col justify-around items-center h-64 w-56 bg-white border border-pink-100 hover:shadow">

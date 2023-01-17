@@ -38,4 +38,18 @@
      
       $this->view('pages/details', $data);
     }
+    public function addcategorie(){
+
+      $data = [
+        ];
+     
+      $this->view('pages/addcategorie', $data);
+    }
+    public function addproduct(){
+
+      $data = [
+        ];
+     
+      $this->view('pages/addproduct', $data);
+    }
   }
