@@ -13,10 +13,10 @@ class Categorie
         $this->db->execute();
         return $this->db->resultSet();
     }
-    public function getSingleCategorie($id){
-        $this->db->query('SELECT *  from Categorie WHERE id = :id');
-        $this->db->bind('id' , $id);
+    public function getSingleCategorie($name){
+        $this->db->query('SELECT *  from Categorie WHERE name_cat = :name');
+        $this->db->bind('name' , $name);
         $this->db->execute();
-        return $this->db->single();
+        return $this->db->rowCount();
     }
 }

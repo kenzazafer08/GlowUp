@@ -3,7 +3,7 @@
 <p class="text-sm text-white">Discover best cosmetic products</p>
 </div>
 <div class="w-full h-14 flex items-center bg-pink-50 justify-around font-serif">
-    <div class="w-2/4 text-center flex items-center justify-center"><a href="<?=URLROOT ?>/pages"><img class="w-[60px] h-[50px]" src="<?=URLROOT?>/public/img/GlowUp.png" /></a><h1 class="w-1/4 sm:w-2/4 text-center text-pink-800 text-xs font-extrabold sm:text-2xl"><a href="<?=URLROOT ?>/pages/products">GlowUp Cosmetics</a></h1></div>
+    <div class="w-2/4 text-center flex items-center justify-center"><a href="<?=URLROOT ?>/pages"><img class="w-[60px] h-[50px]" src="<?=URLROOT?>/public/img/GlowUp.png" /></a><h1 class="w-1/4 sm:w-2/4 text-center text-pink-800 text-xs font-extrabold sm:text-2xl"><a href="<?=URLROOT ?>/pages/Allproduct">GlowUp Cosmetics</a></h1></div>
     <form class="hidden  w-1/4 h-[100%] text-pink-800 mr-8 sm:flex justify-around items-center">   
         <i class="fa fa-search"></i>
         <input type="search" id="default-search" class="border-none h-[70%] block w-full p-4 pl-10 text-sm text-pink-800 bg-pink-50 focus:ring-pink-50 focus:border-pink-50 " placeholder="Search" required>
