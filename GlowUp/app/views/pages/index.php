@@ -13,26 +13,17 @@
 </div>
 </div>
 <div id="animation-carousel" class="relative" data-carousel="static">
+
     <!-- Carousel wrapper -->
     <div class="relative overflow-hidden h-96 ">
-        <div class="flex items-center hidden duration-200 ease-linear bg-cover bg-center bg-[url('<?php echo URLROOT; ?>/public/img/makeup.jpg')]" data-carousel-item>
+    <?php foreach ($data['categories'] as $cat) : ?>
+    <div class="flex items-center  ease-linear bg-cover bg-center bg-[url('<?= $cat->Image ?>')]" data-carousel-item>
            <div class="w-2/4 sm:w-1/4 h-full bg-black flex flex-col justify-center items-center">
-			<p class="text-white text-lg m-8 font-serif">Here you can find all types of makeup that suits your desire</p>
-		    <a class="m-8 py-2 px-4 text-white rounded-lg bg-pink-900 cursor-pointer hover:drop-shadow-xl" href="<?=URLROOT?>/Pages/products">MakeUp</a>
+			<p class="text-white text-lg m-8 font-serif"><?= $cat->discription ?></p>
+		    <a class="m-8 py-2 px-4 text-white rounded-lg bg-pink-900 cursor-pointer hover:drop-shadow-xl" href="<?=URLROOT?>/Pages/products"><?= $cat->name ?></a>
 		   </div> 
         </div>
-		<div class="flex  items-center hidden duration-200 ease-linear bg-cover bg-center bg-[url('<?php echo URLROOT; ?>/public/img/skin.jpg')]" data-carousel-item>
-		<div class="w-2/4 sm:w-1/4 h-full bg-black flex flex-col justify-center items-center">
-			<p class="text-white text-lg m-8 font-serif">Here you can find all types of Skin care products that suits your desire</p>
-		    <a class="m-8 py-2 px-4 text-white rounded-lg bg-pink-900 cursor-pointer hover:drop-shadow-xl" href="<?=URLROOT?>/Pages/products">Skin</a>
-         </div> 
-        </div>
-		<div class="flex  items-center hidden duration-200 ease-linear bg-cover bg-center bg-[url('<?php echo URLROOT; ?>/public/img/hair.jpg')]" data-carousel-item>
-		<div class="w-2/4 sm:w-1/4 h-full bg-black flex flex-col justify-center items-center">
-			<p class="text-white text-lg m-8 font-serif">Here you can find all types of hair products that suits your desire</p>
-		    <a class="m-8 py-2 px-4 text-white rounded-lg bg-pink-900 cursor-pointer hover:drop-shadow-xl" href="<?=URLROOT?>/Pages/products">Hair</a>
-		   </div> 
-        </div>
+   <?php endforeach ?>
     </div>
     <!-- Slider controls -->
     <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
