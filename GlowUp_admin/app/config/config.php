@@ -8,7 +8,7 @@
   // App Root
   define('APPROOT', dirname(dirname(__FILE__)));
   // URL Root
-  define('URLROOT', 'http://localhost/GlowUp_admin/');
+  define('URLROOT', 'http://localhost/GlowUp_admin');
   // Site Name
   define('SITENAME', 'GlowUp Administration');
   
