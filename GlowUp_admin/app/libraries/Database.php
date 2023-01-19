@@ -75,7 +75,10 @@
       $this->execute();
       return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
-
+    public function count(){
+      $this->execute();
+      return $this->stmt->fetch(PDO::FETCH_ASSOC);
+    }
     // Get row count
     public function rowCount(){
       return $this->stmt->rowCount();

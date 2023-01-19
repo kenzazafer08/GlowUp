@@ -2,7 +2,7 @@
 <?php require APPROOT . '/views/inc/sidebar.php'; ?>
 <div class="bg-white w-full h-full overflow-auto flex flex-col">
 <div class="w-full flex justify-end items-center my-10">
-        <a href="<?=URLROOT?>/pages/addcategorie" class="font-bold font-serif text-pink-600 cursor-pointer underline decoration-1 ml-10 mr-20">Add categorie</a>
+        <a href="<?=URLROOT?>/dashboard/addcategorie" class="font-bold font-serif text-pink-600 cursor-pointer underline decoration-1 ml-10 mr-20">Add categorie</a>
     </div>
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 place-items-center">
 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">

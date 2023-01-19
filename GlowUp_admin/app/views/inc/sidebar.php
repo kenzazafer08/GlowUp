@@ -17,7 +17,7 @@
                 </div>
 
                 <nav class="mt-10">
-                    <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-200 hover:text-pink-100" href="<?= URLROOT ?>/pages/dashbord">
+                    <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-200 hover:text-pink-100" href="<?= URLROOT ?>/dashboard/dashbord">
                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
@@ -26,7 +26,7 @@
                         <span class="mx-3">Dashboard</span>
                     </a>
 
-                    <a class="flex items-center mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?= URLROOT ?>/pages/products">
+                    <a class="flex items-center mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?= URLROOT ?>/dashboard/products">
                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z">
                             </path>
@@ -34,7 +34,7 @@
 
                         <span class="mx-3">Products</span>
                     </a>
-                    <a class="flex items-center mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?= URLROOT ?>/pages/categories">
+                    <a class="flex items-center mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="<?= URLROOT ?>/dashboard/categories">
                     <i class="fa fa-bars" aria-hidden="true"></i>
 
                         <span class="mx-3">Categories</span>
@@ -63,7 +63,7 @@
 
                             <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10" style="display: none;">
                                 <a href="#" class="block px-4 py-2 text-sm text-[#080808] hover:bg-pink-800 hover:text-white">Admin</a>
-                                <a href="<?=URLROOT?>" class="block px-4 py-2 text-sm text-[#080808] hover:bg-pink-800 hover:text-white">Logout</a>
+                                <a href="<?=URLROOT?>/pages/logout" class="block px-4 py-2 text-sm text-[#080808] hover:bg-pink-800 hover:text-white">Logout</a>
                             </div>
                         </div>
                     </div>
