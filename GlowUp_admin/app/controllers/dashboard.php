@@ -165,7 +165,8 @@ public function deletecat($id = null){
     redirect('dashboard');
   }
   $done = $this->categorieModel->delete($id);
-  if($done){
+  $done_pro = $this->dashboardModel->deletecategorie($id);
+  if($done && $done_pro){
     $categorie = $this->categorieModel->getCategories();
     $data=[
       'delete' => 'Categorie deleted succesfuly',
@@ -180,8 +181,82 @@ public function deletecat($id = null){
   }
 }
 public function addproduct(){
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //process form
+    $data = [
+        'name' => $_POST['name'],
+        'image' => $_POST['image'],
+        'discription' => $_POST['discription'],
+        'brand' => $_POST['brand'],
+        'howto' => $_POST['howto'],
+        'categorie' => $_POST['categorie'],
+        'name_err' => '',
+        'image_err' => '',
+        'discription_err' => '',
+        'brand_err' => '',
+        'howto_err' => '',
+        'categorie_err' => '',
+        'add' => '', 
+    ];
+      if (empty($data['name'])) {
+          $data['name_err'] = 'name must be filled';
+      }
+      if (empty($data['image'])) {
+          $data['image_err'] = 'image must be filled';
+      }
+      if (empty($data['discription'])) {
+        $data['discription_err'] = 'discirption must be filled';
+      }
+      if (empty($data['brand'])) {
+        $data['brand_err'] = 'brand must be filled';
+    }
+    if (empty($data['howto'])) {
+        $data['howto_err'] = 'How To must be filled';
+    }
+    if (empty($data['categorie'])) {
+      $data['categorie_err'] = 'categorie must be filled';
+    }
+      if(empty($data['name_err']) && empty($data['image_err']) && empty($data['discription_err']) && empty($data['brand_err']) && empty($data['howto_err']) && empty($data['categorie_err'])){
+         $done =  $this->dashboardModel->addProduct($data);
+         $categorie = $this->dashboardModel->getcategories();
+         if($done){
+          $data = [
+        'name' => '',
+        'image' => '',
+        'discription' => '',
+        'brand' => '',
+        'howto' => '',
+        'categorie' => '',
+        'name_err' => '',
+        'image_err' => '',
+        'discription_err' => '',
+        'brand_err' => '',
+        'howto_err' => '',
+        'categorie_err' => '',
+            'add' => 'Product added succesfuly',
+            'categories' => $categorie  
+        ];
+        $this->view('pages/addproduct', $data);
+         }
+      }else{
+        $data['add'] = 'something went wrong !';
+      $this->view('pages/addproduct', $data);
+      }
+}
 $categorie = $this->dashboardModel->getcategories();
 $data = [
+  'name' => '',
+        'image' => '',
+        'discription' => '',
+        'brand' => '',
+        'howto' => '',
+        'categorie' => '',
+        'name_err' => '',
+        'image_err' => '',
+        'discription_err' => '',
+        'brand_err' => '',
+        'howto_err' => '',
+        'categorie_err' => '',
   'add' => '',
   'categories' => $categorie 
   ];
@@ -197,8 +272,8 @@ public function editpro($id = null){
         'image' => $_POST['image'],
         'discription' => $_POST['discription'],
         'howto' => $_POST['howto'],
-        'name_cat' => $_POST['categorie'],
-        'id_cat' => '',
+        'name_cat' => '',
+        'id_cat' => $_POST['categorie'],
         'name_err' => '',
         'image_err' => '',
         'discription_err' => '',
@@ -212,16 +287,19 @@ public function editpro($id = null){
       if (empty($data['image'])) {
           $data['image_err'] = 'image must be filled';
       }
+      if (empty($data['brand'])) {
+        $data['brand_err'] = 'brand must be filled';
+    }
       if (empty($data['discription'])) {
         $data['discription_err'] = 'discirption must be filled';
       }
       if (empty($data['howto'])) {
         $data['howto_err'] = 'image must be filled';
     }
-      if(empty($data['name_err']) && empty($data['image_err']) && empty($data['discription_err']) && empty($data['howto_err'])){
+      if(empty($data['name_err']) && empty($data['image_err']) && empty($data['discription_err']) && empty($data['howto_err']) && empty($data['brand_err'])){
         $done =  $this->dashboardModel->edit($data);
         if($done){
-        $categorie = $this->dashboardModel->getcategories();
+        $categorie = $this->categorieModel->getcategories();
         $product = $this->dashboardModel->getSingleProduct($id);
         $data = [
         'id' => $product->id,
@@ -248,7 +326,7 @@ public function editpro($id = null){
       }
 }
 $product = $this->dashboardModel->getSingleProduct($id);
-$categorie = $this->dashboardModel->getcategories();
+$categorie = $this->categorieModel->getcategories();
 $data = [
   'id' => $product->id,
   'name' => $product->name,
@@ -273,7 +351,7 @@ public function deletepro($id = null){
   if($id ==null || $this->dashboardModel->getSingleProduct($id) == null){
     redirect('dashboard');
   }
-  $done = $this->categorieModel->delete($id);
+  $done = $this->dashboardModel->delete($id);
   $products = $this->dashboardModel->getProducts();
   if($done){
     $data = [  

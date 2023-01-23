@@ -27,43 +27,40 @@ class Product
         $this->db->execute();
         return $this->db->resultSet();
     }
-
     public function addProduct($product)
     {
-        $this->db->query("INSERT INTO produit(name , image ,brand, description ,howto, id_cat ) VALUES (:name , :image ,:brand, :description,howto , :id_cat)");
+        $this->db->query("INSERT INTO produit(name , Image , discription , brand , HowTo , categorie) VALUES (:name , :image ,:description,:brand , :howto ,:categorie)");
         $this->db->bind("name", $product['name']);
-        $this->db->bind("image", $product['Image']);
+        $this->db->bind("image", $product['image']);
+        $this->db->bind("description", $product['discription']);
         $this->db->bind("brand", $product['brand']);
-        $this->db->bind("description", $product['desc']);
         $this->db->bind("howto", $product['howto']);
-        $this->db->bind("id_cat", intval($product['id_cat']));
+        $this->db->bind("categorie", $product['categorie']);
         $this->db->execute();
         if($this->db->rowCount() < 1){
             return false;
         }
         return true;
     }
-
     public function edit($product)
     {
-        $this->db->query('UPDATE produit SET name = :name , image = :image ,discription = :description ,HowTo = :howto , id_cat = :id_cat  WHERE id_prod = :id');
+        $this->db->query('UPDATE produit SET name = :name , Image = :image ,discription = :description ,HowTo = :howto ,categorie = :id_cat ,brand = :brand WHERE id = :id');
         $this->db->bind('id' , $product['id']);
         $this->db->bind("name", $product['name']);
         $this->db->bind("image", $product['image']);
-        $this->db->bind("brand", $product['brand']);
+        $this->db->bind("description", $product['discription']);
         $this->db->bind("howto", $product['howto']);
-        $this->db->bind("description", $product['description']);
-        $this->db->bind("id_cat", intval($product['id_cat']));
+        $this->db->bind("id_cat", $product['id_cat']);
+        $this->db->bind("brand", $product['brand']);
         $this->db->execute();
         if($this->db->rowCount() < 1){
             return false;
         }
         return true;
     }
-
     public function delete($id)
     {
-        $this->db->query('DELETE * FROM produit WHERE id = :id');
+        $this->db->query('DELETE FROM produit WHERE id = :id');
         $this->db->bind('id' , intval($id));
         $this->db->execute();
         if($this->db->rowCount() < 1){

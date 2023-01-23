@@ -3,9 +3,9 @@
 <div class="w-full h-full flex flex-col items-center bg-white overflow-auto">
     <?php foreach ($data['products'] as $product) : ?>
 <?php if ($product->id == $data['id']) : ?>
-    <div class="w-full flex justify-end items-center m-10 ">
-        <a href="<?=URLROOT?>/dashboard/editpro/<?=$product->id?>" class="font-bold font-serif text-pink-600 cursor-pointer underline decoration-1">Edit</a>
-        <a href="<?=URLROOT?>/dashboard/deletepro/<?=$product->id?>" class="font-bold font-serif text-pink-600 cursor-pointer underline decoration-1 ml-10 mr-20">Delete</a>
+    <div class="w-full flex justify-end items-center mt-4 ">
+        <a href="<?=URLROOT?>/dashboard/editpro/<?=$product->id?>" class="font-bold font-serif text-pink-600 cursor-pointer underline decoration-1 mr-10 ">Edit</a>
+        <a href="<?=URLROOT?>/dashboard/deletepro/<?=$product->id?>" class="font-bold font-serif text-pink-600 cursor-pointer underline decoration-1 mr-20">Delete</a>
     </div>
 <div class="flex sm:flex-row flex-col items-center justify-around">
 <div class="flex flex-col items-center w-2/4 my-8">

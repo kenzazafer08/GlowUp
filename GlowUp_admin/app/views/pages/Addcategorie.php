@@ -1,7 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <?php require APPROOT . '/views/inc/sidebar.php'; ?>
 <div class="bg-white w-full h-full overflow-auto flex flex-col items-center justify-around">
-    <h1 class="m-10 font-extrabold font-serif text-3xl text-gray-900">Add Categorie</h1>
+    <h1 class="mt-4 mr-4 font-extrabold font-serif text-3xl text-gray-900">Add Categorie</h1>
     <?php echo '<span class="text-green-600 font-bold text-lg text-center">'.$data['add'].'</span>' ?>
    <form class=" w-[90%] h-full" action='<?= URLROOT?>/dashboard/addcategorie' method='POST'>
 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
