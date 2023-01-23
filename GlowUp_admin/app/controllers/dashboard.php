@@ -190,6 +190,12 @@ public function addproduct(){
         'brand' => $_POST['brand'],
         'howto' => $_POST['howto'],
         'categorie' => $_POST['categorie'],
+        'name1' => $_POST['name1'],
+        'image1' => $_POST['image1'],
+        'discription1' => $_POST['discription1'],
+        'brand1' => $_POST['brand1'],
+        'howto1' => $_POST['howto1'],
+        'categorie1' => $_POST['categorie1'],
         'name_err' => '',
         'image_err' => '',
         'discription_err' => '',
@@ -216,8 +222,8 @@ public function addproduct(){
     if (empty($data['categorie'])) {
       $data['categorie_err'] = 'categorie must be filled';
     }
-      if(empty($data['name_err']) && empty($data['image_err']) && empty($data['discription_err']) && empty($data['brand_err']) && empty($data['howto_err']) && empty($data['categorie_err'])){
-         $done =  $this->dashboardModel->addProduct($data);
+      if(empty($data['name_err']) && empty($data['image_err']) && empty($data['discription_err']) && empty($data['brand_err']) && empty($data['howto_err']) && empty($data['categorie_err']) && empty($data['name1']) && empty($data['image1']) && empty($data['discription1']) && empty($data['brand1']) && empty($data['howto1']) && empty($data['categorie1'])){
+         $done =  $this->dashboardModel->addProducts($data);
          $categorie = $this->dashboardModel->getcategories();
          if($done){
           $data = [
@@ -227,6 +233,12 @@ public function addproduct(){
         'brand' => '',
         'howto' => '',
         'categorie' => '',
+        'name1' => '',        
+        'image1' => '',
+        'discription1' => '',
+        'brand1' => '',
+        'howto1' => '',
+        'categorie1' => '',
         'name_err' => '',
         'image_err' => '',
         'discription_err' => '',
@@ -238,25 +250,53 @@ public function addproduct(){
         ];
         $this->view('pages/addproduct', $data);
          }
-      }else{
+      }else if(empty($data['name_err']) && empty($data['image_err']) && empty($data['discription_err']) && empty($data['brand_err'])&& empty($data['howto_err']) && empty($data['categorie_err'])){
+        $done =  $this->dashboardModel->addProduct($data);
+        $categorie = $this->dashboardModel->getcategories();
+        if($done){
+         $data = [
+       'name' => '',
+       'image' => '',
+       'discription' => '',
+       'brand' => '',
+       'howto' => '',
+       'categorie' => '',
+       'name1' => '',        
+        'image1' => '',
+        'discription1' => '',
+        'brand1' => '',
+        'howto1' => '',
+        'categorie1' => '',
+       'name_err' => '',
+       'image_err' => '',
+       'discription_err' => '',
+       'brand_err' => '',
+       'howto_err' => '',
+       'categorie_err' => '',
+        'add' => 'Product added succesfuly',
+        'categories' => $categorie  
+       ];
+       $this->view('pages/addproduct', $data);
+      }
+      else{
         $data['add'] = 'something went wrong !';
       $this->view('pages/addproduct', $data);
       }
 }
-$categorie = $this->dashboardModel->getcategories();
+}$categorie = $this->dashboardModel->getcategories();
 $data = [
   'name' => '',
-        'image' => '',
-        'discription' => '',
-        'brand' => '',
-        'howto' => '',
-        'categorie' => '',
-        'name_err' => '',
-        'image_err' => '',
-        'discription_err' => '',
-        'brand_err' => '',
-        'howto_err' => '',
-        'categorie_err' => '',
+  'image' => '',
+  'discription' => '',
+  'brand' => '',
+  'howto' => '',
+  'categorie' => '',
+  'name_err' => '',
+  'image_err' => '',
+  'discription_err' => '',
+  'brand_err' => '',
+  'howto_err' => '',
+  'categorie_err' => '',
   'add' => '',
   'categories' => $categorie 
   ];
