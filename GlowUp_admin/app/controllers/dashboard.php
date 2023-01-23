@@ -24,6 +24,7 @@ $this->view('pages/dashbord', $data);
 public function products(){
 $products = $this->dashboardModel->getProducts();
 $data = [  
+  'delete' => '',
   'products' => $products ,
   ];
 $this->view('pages/products', $data);
@@ -185,5 +186,107 @@ $data = [
   'categories' => $categorie 
   ];
 $this->view('pages/addproduct', $data);
+}
+public function editpro($id = null){
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //process form
+    $data = [
+         'id' => $id,
+        'name' => $_POST['name'],
+        'brand' => $_POST['brand'],
+        'image' => $_POST['image'],
+        'discription' => $_POST['discription'],
+        'howto' => $_POST['howto'],
+        'name_cat' => $_POST['categorie'],
+        'id_cat' => '',
+        'name_err' => '',
+        'image_err' => '',
+        'discription_err' => '',
+        'howto_err' => '',
+        'categorie_err' => '',
+        'add' => '', 
+    ];
+      if (empty($data['name'])) {
+          $data['name_err'] = 'name must be filled';
+      }
+      if (empty($data['image'])) {
+          $data['image_err'] = 'image must be filled';
+      }
+      if (empty($data['discription'])) {
+        $data['discription_err'] = 'discirption must be filled';
+      }
+      if (empty($data['howto'])) {
+        $data['howto_err'] = 'image must be filled';
+    }
+      if(empty($data['name_err']) && empty($data['image_err']) && empty($data['discription_err']) && empty($data['howto_err'])){
+        $done =  $this->dashboardModel->edit($data);
+        if($done){
+        $categorie = $this->dashboardModel->getcategories();
+        $product = $this->dashboardModel->getSingleProduct($id);
+        $data = [
+        'id' => $product->id,
+        'name' => $product->name,
+        'brand' => $product->brand,
+        'image' => $product->Image,
+        'discription' => $product->discription,
+        'howto' => $product->HowTo,
+        'name_cat' => $product->name_cat,
+        'id_cat' => $product->id_cat,
+        'name_err' => '',
+        'image_err' => '',
+        'discription_err' => '',
+        'howto_err' => '',
+        'categorie_err' => '',
+        'categories' => $categorie,
+        'add' => 'Product edited succesfuly', 
+        ];
+        $this->view('pages/editproduct', $data);
+         }
+      }else{
+        $data['Add'] = 'something went wrong !';
+      $this->view('pages/editproduct', $data);
+      }
+}
+$product = $this->dashboardModel->getSingleProduct($id);
+$categorie = $this->dashboardModel->getcategories();
+$data = [
+  'id' => $product->id,
+  'name' => $product->name,
+  'brand' => $product->brand,
+  'image' => $product->Image,
+  'discription' => $product->discription,
+  'howto' => $product->HowTo,
+  'name_cat' => $product->name_cat,
+  'id_cat' => $product->id_cat,
+  'name_err' => '',
+  'image_err' => '',
+  'discription_err' => '',
+  'howto_err' => '',
+  'categorie_err' => '',
+  'add' => '',
+  'categories' => $categorie
+  ];
+
+$this->view('pages/editproduct', $data);
+}
+public function deletepro($id = null){
+  if($id ==null || $this->dashboardModel->getSingleProduct($id) == null){
+    redirect('dashboard');
+  }
+  $done = $this->categorieModel->delete($id);
+  $products = $this->dashboardModel->getProducts();
+  if($done){
+    $data = [  
+  'delete' => 'Product deleted succesfuly',
+  'products' => $products ,
+  ];
+$this->view('pages/products', $data);
+  }else{
+    $data=[
+      'delete' => 'Something went wrong',
+      'products' => $products ,
+    ];
+    $this->view('pages/products', $data);
+  }
 }
   }

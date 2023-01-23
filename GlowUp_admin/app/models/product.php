@@ -46,7 +46,7 @@ class Product
 
     public function edit($product)
     {
-        $this->db->query('UPDATE produit SET name = :name , image = :image ,price = :price ,description = :description ,howto = :howto , id_cat = :id_cat  WHERE id_prod = :id');
+        $this->db->query('UPDATE produit SET name = :name , image = :image ,discription = :description ,HowTo = :howto , id_cat = :id_cat  WHERE id_prod = :id');
         $this->db->bind('id' , $product['id']);
         $this->db->bind("name", $product['name']);
         $this->db->bind("image", $product['image']);
@@ -63,7 +63,7 @@ class Product
 
     public function delete($id)
     {
-        $this->db->query('DELETE FROM produit WHERE id = :id');
+        $this->db->query('DELETE * FROM produit WHERE id = :id');
         $this->db->bind('id' , intval($id));
         $this->db->execute();
         if($this->db->rowCount() < 1){

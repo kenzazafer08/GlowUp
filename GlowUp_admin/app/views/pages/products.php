@@ -4,6 +4,7 @@
 <div class="w-full flex justify-end items-center m-10 ">
         <a href="<?=URLROOT?>/dashboard/addproduct"  class="font-bold font-serif text-pink-600 cursor-pointer underline decoration-1 ml-10 mr-20">Add products</a>
     </div>
+    <?php echo '<span class="text-green-600 font-bold text-lg text-center">'.$data['delete'].'</span>' ?>  
 <div class="m-4 grid grid-cols-1 sm:grid-cols-3 gap-4 place-items-center">
     <?php foreach($data['products'] as $products) : ?>
     <a href="<?= URLROOT ?>/dashboard/details/<?= $products->id ?>"><div class="flex flex-col justify-around items-center h-64 w-56 bg-white border border-pink-100 hover:shadow">
