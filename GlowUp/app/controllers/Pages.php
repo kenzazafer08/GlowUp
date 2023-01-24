@@ -1,6 +1,4 @@
 <?php   
-
-
   class Pages extends Controller {
     protected $productModel;
     protected $categorieModel;
@@ -16,27 +14,37 @@
       ];
       $this->view('pages/index',$data);
     }
-    public function products($cat = null){
-      // die($cat);
-      if( $cat == null || $this->categorieModel->getSingleCategorie($cat) == null){
-        redirect('/pages');
-      }
+    public function Allproduct(){
+      $cat = $this->categorieModel->getCategories();
       $product = $this->productModel->getProducts();  
       $data=[
           'products' => $product,
-          'categorie' => $cat
-      ];
-      // echo "<pre>";
-      // var_dump($data);
-      // echo "<pre>";
-      $this->view('pages/products',$data);
-    }
-    public function Allproduct(){
-      $product = $this->productModel->getProducts();  
-      $data=[
-          'products' => $product
+          'categories' => $cat
       ];
       $this->view('pages/Allproduct',$data);
+    }
+    public function name($name = null){
+      if($name != null){
+        $product = $this->productModel->getProductsbyname($name);  
+        
+      }else{
+        $product = $this->productModel->getProducts();  
+      }
+
+      $data = json_encode($product);
+      echo $data;
+      
+    }
+    public function categorie($name = 0){
+      if($name > 0){
+        $product = $this->productModel->getProductsbycategorie($name);  
+      }else{
+        $product = $this->productModel->getProducts();  
+      }
+
+      $data = json_encode($product);
+      echo $data;
+      
     }
     public function details($id = null){
       if($id ==null || $this->productModel->getSingleProduct($id) == null){
@@ -48,5 +56,11 @@
           'id' => $id
       ];
       $this->view('pages/details',$data);
+    }
+    public function About(){
+      $this->view('pages/about');
+    }
+    public function Contact(){
+      $this->view('pages/contact');
     }
   }
