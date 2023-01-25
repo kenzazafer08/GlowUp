@@ -1,5 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <?php require APPROOT . '/views/inc/sidebar.php'; ?>
+<div><h1 class="font-bold mt-10 ml-10 text-2xl"> Welcome <span class="text-pink-600 text-2xl"><?=$_SESSION['username']->Username?></span></h1></div>
 <div class="  w-full sm:flex-row flex-col flex justify-around items-center">
 <div class="my-10 w-96 p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
 <a href="#" class="flex justify-between items-center w-[90%] text-bold hover:text-pink-900">

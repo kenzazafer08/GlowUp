@@ -64,4 +64,4 @@
        session_destroy();
        redirect('/Pages');
     }
-  }
+}

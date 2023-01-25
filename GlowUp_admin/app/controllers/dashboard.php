@@ -261,7 +261,7 @@ public function addproduct(){
         'brand_err' => '',
         'howto_err' => '',
         'categorie_err' => '',
-        'add' => 'Product added succesfuly', 
+        'add' => '', 
   ];
 
  $this->view('pages/Addproduct', $data);

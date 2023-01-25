@@ -11,6 +11,7 @@
             <img src="<?= $products->Image ?>" alt="" class="h-2/4 w-3/4">
             <h1 class="font-bold text-lg font-serif"><?= $products->brand ?></h1>
             <p class="text-center text-sm"><?= $products->name ?></p>
+            <p class="text-center text-sm text-pink-900"><?= $products->name_cat ?></p>
         </div></a>     
     <?php endforeach ?>   </div>
 </div>
