@@ -1,8 +1,10 @@
 <?php
   class Pages extends Controller {
     private $userModel;
+    private $categorieModel;
     public function __construct(){
      $this->userModel = $this->model('user');
+     $this->categorieModel = $this->model('categorie');
     } 
     public function index(){
       // Check the request method
@@ -64,4 +66,10 @@
        session_destroy();
        redirect('/Pages');
     }
+    public function categories(){
+        $product = $this->categorieModel->getCategories();  
+        $data = json_encode($product);
+        echo $data;
+        
+      }
 }

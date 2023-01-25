@@ -188,43 +188,21 @@ public function deletecat($id = null){
   }
 }
 public function addproduct(){
+  $categorie = $this->categorieModel->getCategories();
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    for ($i = 0; $i < count($_POST['name']); $i++) {
     //process form
     $data = [
-        'name' => $_POST['name'],
-        'image' => $_POST['image'],
-        'discription' => $_POST['discription'],
-        'brand' => $_POST['brand'],
-        'howto' => $_POST['howto'],
-        'categorie' => $_POST['categorie'],
-        'name_err' => '',
-        'image_err' => '',
-        'discription_err' => '',
-        'brand_err' => '',
-        'howto_err' => '',
-        'categorie_err' => '',
+        'name' => $_POST['name'][$i],
+        'image' => $_POST['image'][$i],
+        'discription' => $_POST['discription'][$i],
+        'brand' => $_POST['brand'][$i],
+        'howto' => $_POST['howto'][$i],
+        'categorie' => $_POST['categorie'][$i],
+        'categories' => $categorie,
         'add' => '', 
     ];
-      if (empty($data['name'])) {
-          $data['name_err'] = 'name must be filled';
-      }
-      if (empty($data['image'])) {
-          $data['image_err'] = 'image must be filled';
-      }
-      if (empty($data['discription'])) {
-        $data['discription_err'] = 'discirption must be filled';
-      }
-      if (empty($data['brand'])) {
-        $data['brand_err'] = 'brand must be filled';
-      }
-      if (empty($data['howto'])) {
-        $data['howto_err'] = 'How To must be filled';
-      }
-      if (empty($data['categorie'])) {
-      $data['categorie_err'] = 'categorie must be filled';
-      }
-      if(empty($data['name_err']) && empty($data['image_err']) && empty($data['discription_err']) && empty($data['brand_err']) && empty($data['howto_err']) && empty($data['categorie_err'])){
-         $done =  $this->dashboardModel->addProduct($data);
+      $done =  $this->dashboardModel->addProduct($data);
          if($done){
           $data = [
         'name' => '',
@@ -233,35 +211,24 @@ public function addproduct(){
         'brand' => '',
         'howto' => '',
         'categorie' => '',
-        'name_err' => '',
-        'image_err' => '',
-        'discription_err' => '',
-        'brand_err' => '',
-        'howto_err' => '',
-        'categorie_err' => '',
         'add' => 'Product added succesfuly', 
         ];
         $this->view('pages/Addproduct', $data);
          }
-      }else{
+      else{
         $data['add'] = 'something went wrong !';
       $this->view('pages/Addproduct', $data);
-      }
+      }}
  }
  $data = [
   'name' => '',
-        'image' => '',
-        'discription' => '',
-        'brand' => '',
-        'howto' => '',
-        'categorie' => '',
-        'name_err' => '',
-        'image_err' => '',
-        'discription_err' => '',
-        'brand_err' => '',
-        'howto_err' => '',
-        'categorie_err' => '',
-        'add' => '', 
+  'image' => '',
+  'discription' => '',
+  'brand' => '',
+  'howto' => '',
+  'categorie' => '',
+  'categories' => $categorie,
+  'add' => '', 
   ];
 
  $this->view('pages/Addproduct', $data);
