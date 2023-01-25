@@ -2,7 +2,7 @@
 <div class="w-full flex flex-col items-center">
 <?php foreach ($data['products'] as $product) : ?>
 <?php if ($product->id == $data['id']) : ?>
-<div class="flex sm:flex-row flex-col justify-around">
+<div class="flex items-center sm:flex-row flex-col justify-around">
 <div class="flex flex-col items-center w-2/4 my-8">
     <img src="<?= $product->Image ?>" alt="" class="mb-4 w-[40%] border-2 border-pink-100 hover:shadow-sm cursor-pointer">
     <h1 class="text-sm font-bold font-serif"><?= $product->brand ?></h1>

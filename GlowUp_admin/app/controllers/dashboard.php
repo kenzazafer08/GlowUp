@@ -2,32 +2,31 @@
   class dashboard extends Controller {
     private $dashboardModel;
     private $categorieModel;
-    public function __construct(){
+public function __construct(){
         if(!isLoggedIn()){
             redirect('/pages');
         }
         $this->dashboardModel = $this->model('product');
         $this->categorieModel = $this->model('categorie');
-    } 
+} 
 public function index(){
-$products = $this->dashboardModel->countproduct();
-$categorie = $this->categorieModel->countcategorie();
-$nbp = $products['total'];
-$nbc = $categorie['total'];
-$data = [
+  $products = $this->dashboardModel->countproduct();
+  $categorie = $this->categorieModel->countcategorie();
+  $nbp = $products['total'];
+  $nbc = $categorie['total'];
+  $data = [
     'nbp' => $nbp,
     'nbc' => $nbc
   ];
-
-$this->view('pages/dashbord', $data);
+  $this->view('pages/dashbord', $data);
 }
 public function products(){
-$products = $this->dashboardModel->getProducts();
-$data = [  
+  $products = $this->dashboardModel->getProducts();
+  $data = [  
   'delete' => '',
   'products' => $products ,
   ];
-$this->view('pages/products', $data);
+  $this->view('pages/products', $data);
 }
 public function categories(){
   $categorie = $this->categorieModel->getCategories();
@@ -35,7 +34,7 @@ public function categories(){
     'categorie' => $categorie,
     'delete' => ''
     ];
-$this->view('pages/categories', $data);
+  $this->view('pages/categories', $data);
 }
 public function details($id = null ){
   if($id ==null || $this->dashboardModel->getSingleProduct($id) == null){
@@ -87,8 +86,8 @@ public function addcategorie(){
         $data['add'] = 'something went wrong !';
       $this->view('pages/addcategorie', $data);
       }
-}
-$data = [
+ }
+  $data = [
   'name' => '',
   'image' => '',
   'discription' => '',
@@ -98,7 +97,7 @@ $data = [
   'add' => ''
   ];
 
-$this->view('pages/addcategorie', $data);
+  $this->view('pages/addcategorie', $data);
 }
 public function editcat($id = null ){
   if($id ==null || $this->dashboardModel->getSingleProduct($id) == null){
@@ -145,9 +144,9 @@ public function editcat($id = null ){
         $data['Add'] = 'something went wrong !';
       $this->view('pages/editcategorie', $data);
       }
-}
-$categorie = $this->categorieModel->getSinglecategorie($id);
-$data = [
+ }
+ $categorie = $this->categorieModel->getSinglecategorie($id);
+ $data = [
   'id' => $categorie->id_cat,
   'name' => $categorie->name_cat,
   'image' => $categorie->Image_cat,
@@ -158,7 +157,7 @@ $data = [
   'add' => ''
   ];
 
-$this->view('pages/editcategorie', $data);
+ $this->view('pages/editcategorie', $data);
 }
 public function deletecat($id = null){
   if($id ==null || $this->categorieModel->getSinglecategorie($id) == null){
@@ -166,16 +165,24 @@ public function deletecat($id = null){
   }
   $done = $this->categorieModel->delete($id);
   $done_pro = $this->dashboardModel->deletecategorie($id);
+  $categorie = $this->categorieModel->getCategories();
   if($done && $done_pro){
-    $categorie = $this->categorieModel->getCategories();
+    
     $data=[
       'delete' => 'Categorie deleted succesfuly',
       'categorie' => $categorie
     ];
     $this->view('pages/categories', $data);
+  }else if($done){
+    $data=[
+      'categorie' => $categorie,
+      'delete' => 'Categorie deleted succesfuly'
+    ];
+    $this->view('pages/categories', $data);
   }else{
     $data=[
-      'delete' => 'Something went wrong'
+      'categorie' => $categorie,
+      'delete' => 'something went wrong'
     ];
     $this->view('pages/categories', $data);
   }
@@ -209,58 +216,55 @@ public function addproduct(){
       }
       if (empty($data['brand'])) {
         $data['brand_err'] = 'brand must be filled';
-    }
-    if (empty($data['howto'])) {
+      }
+      if (empty($data['howto'])) {
         $data['howto_err'] = 'How To must be filled';
-    }
-    if (empty($data['categorie'])) {
+      }
+      if (empty($data['categorie'])) {
       $data['categorie_err'] = 'categorie must be filled';
-    }
-if(empty($data['name_err']) && empty($data['image_err']) && empty($data['discription_err']) && empty($data['brand_err'])&& empty($data['howto_err']) && empty($data['categorie_err'])){
-        $done =  $this->dashboardModel->addProduct($data);
-        $categorie = $this->dashboardModel->getcategories();
-        if($done){
-         $data = [
-       'name' => '',
-       'image' => '',
-       'discription' => '',
-       'brand' => '',
-       'howto' => '',
-       'categorie' => '',
-       'name_err' => '',
-       'image_err' => '',
-       'discription_err' => '',
-       'brand_err' => '',
-       'howto_err' => '',
-       'categorie_err' => '',
-      'add' => 'Product added succesfuly',
-        'categories' => $categorie  
-       ];
-       $this->view('pages/addproduct', $data);
       }
-      else{
+      if(empty($data['name_err']) && empty($data['image_err']) && empty($data['discription_err']) && empty($data['brand_err']) && empty($data['howto_err']) && empty($data['categorie_err'])){
+         $done =  $this->dashboardModel->addProduct($data);
+         if($done){
+          $data = [
+        'name' => '',
+        'image' => '',
+        'discription' => '',
+        'brand' => '',
+        'howto' => '',
+        'categorie' => '',
+        'name_err' => '',
+        'image_err' => '',
+        'discription_err' => '',
+        'brand_err' => '',
+        'howto_err' => '',
+        'categorie_err' => '',
+        'add' => 'Product added succesfuly', 
+        ];
+        $this->view('pages/Addproduct', $data);
+         }
+      }else{
         $data['add'] = 'something went wrong !';
-      $this->view('pages/addproduct', $data);
+      $this->view('pages/Addproduct', $data);
       }
-}
-}$categorie = $this->dashboardModel->getcategories();
-$data = [
+ }
+ $data = [
   'name' => '',
-  'image' => '',
-  'discription' => '',
-  'brand' => '',
-  'howto' => '',
-  'categorie' => '',
-  'name_err' => '',
-  'image_err' => '',
-  'discription_err' => '',
-  'brand_err' => '',
-  'howto_err' => '',
-  'categorie_err' => '',
-  'add' => '',
-  'categories' => $categorie 
+        'image' => '',
+        'discription' => '',
+        'brand' => '',
+        'howto' => '',
+        'categorie' => '',
+        'name_err' => '',
+        'image_err' => '',
+        'discription_err' => '',
+        'brand_err' => '',
+        'howto_err' => '',
+        'categorie_err' => '',
+        'add' => 'Product added succesfuly', 
   ];
-$this->view('pages/addproduct', $data);
+
+ $this->view('pages/Addproduct', $data);
 }
 public function editpro($id = null){
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -324,10 +328,10 @@ public function editpro($id = null){
         $data['Add'] = 'something went wrong !';
       $this->view('pages/editproduct', $data);
       }
-}
-$product = $this->dashboardModel->getSingleProduct($id);
-$categorie = $this->categorieModel->getcategories();
-$data = [
+  }
+  $product = $this->dashboardModel->getSingleProduct($id);
+  $categorie = $this->categorieModel->getcategories();
+  $data = [
   'id' => $product->id,
   'name' => $product->name,
   'brand' => $product->brand,
@@ -345,7 +349,7 @@ $data = [
   'categories' => $categorie
   ];
 
-$this->view('pages/editproduct', $data);
+  $this->view('pages/editproduct', $data);
 }
 public function deletepro($id = null){
   if($id ==null || $this->dashboardModel->getSingleProduct($id) == null){
@@ -358,7 +362,7 @@ public function deletepro($id = null){
   'delete' => 'Product deleted succesfuly',
   'products' => $products ,
   ];
-$this->view('pages/products', $data);
+  $this->view('pages/products', $data);
   }else{
     $data=[
       'delete' => 'Something went wrong',
@@ -367,4 +371,4 @@ $this->view('pages/products', $data);
     $this->view('pages/products', $data);
   }
 }
-  }
+}

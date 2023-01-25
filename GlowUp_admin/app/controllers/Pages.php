@@ -54,14 +54,14 @@
          $this->view('pages/index', $data);
      }
      }
-     public function createUserSession($user)
+     public function createUserSession($username)
      {
-         $_SESSION['username'] = $user;
+         $_SESSION['username'] = $username;
          redirect('/dashboard');
      }
      public function logout(){
        unset($_SESSION['username']);
        session_destroy();
        redirect('/Pages');
-   }
+    }
   }

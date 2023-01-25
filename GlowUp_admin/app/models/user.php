@@ -1,13 +1,12 @@
 <?php 
 class user{
     private $db;
-    public function __construct()
-    {
+    
+    public function __construct(){
         $this->db = new Database;
-
     }
-    public function login($username, $password)
-    {
+
+    public function login($username, $password){
         $this->db->query("SELECT * FROM admin WHERE username = :username");
         $this->db->bind('username', $username);
 
@@ -23,8 +22,7 @@ class user{
     }
 
     // Check if user email is already taken 
-    public function findUserByUsername($username)
-    {
+    public function findUserByUsername($username){
         $this->db->query('SELECT * FROM admin WHERE username = :username');
         $this->db->bind('username', $username);
 

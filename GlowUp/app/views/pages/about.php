@@ -1,7 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-<div class="flex justify-around items-center">
+<div class="flex flex-col sm:flex-row justify-around items-center">
     <img src="<?=URLROOT?>/public/img/bg.jpg" />
-    <div class="flex flex-col items-center justify-around w-[90%]">
+    <div class="my-10 sm:my-0 flex flex-col items-center justify-around w-[90%]">
         
 <h1 class="text-4xl mb-10 font-extrabold leading-none tracking-tight text-gray-900">Glow Up</h1>
 <p class="text-lg font-normal text-gray-500 lg:text-xl sm:px-16 ">"Welcome to our website, your one-stop destination for all things beauty! Our team of experts is dedicated to providing you with the latest and greatest in cosmetics, skincare, and beauty products. We believe in offering high-quality, innovative products at affordable prices, so you can look and feel your best without breaking the bank. Whether you're looking for a new makeup look or a skincare routine, we have something for everyone. Thank you for choosing us, and we look forward to serving you."</p>

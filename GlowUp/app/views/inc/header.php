@@ -3,8 +3,11 @@
 <p class="text-sm text-white">Discover best cosmetic products</p>
 </div>
 <div class="hidden w-full h-14 sm:flex items-center bg-pink-50 justify-around font-serif">
-    <div class="w-2/4 text-center flex items-center justify-center"><a href="<?=URLROOT ?>/pages"><img class="w-[60px] h-[50px]" src="<?=URLROOT?>/public/img/GlowUp.png" /></a><h1 class="w-1/4 sm:w-2/4 text-center text-pink-800 text-xs font-extrabold sm:text-2xl"><a href="<?=URLROOT ?>/pages/Allproduct">GlowUp Cosmetics</a></h1></div>
-    <ul class="flex justify-around items-center mt-4 font-medium md:flex-row md:space-x-8 md:mt-0">
+    
+    <a href="<?=URLROOT ?>/pages" class="w-1/4 ml-10"><img class="w-[60px] h-[50px]" src="<?=URLROOT?>/public/img/GlowUp.png" /></a>
+    
+    <div class="w-2/4 text-center flex items-center justify-center"> <h1 class="w-1/4 sm:w-2/4 text-center text-pink-800 text-xs font-extrabold sm:text-2xl"><a href="<?=URLROOT ?>/pages/Allproduct">GlowUp Cosmetics</a></h1></div>
+    <ul class="flex justify-around items-center w-1/4 mt-4 font-medium md:flex-row md:space-x-8 md:mt-0">
         <li>
                     <a href="<?=URLROOT?>/pages/Allproduct" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-pink-600 md:p-0 dark:text-gray-400 md:dark:hover:text-pink-500 dark:hover:bg-gray-700 dark:hover:text-pink-500 md:dark:hover:bg-transparent dark:border-gray-700">Products</a>
                 </li>

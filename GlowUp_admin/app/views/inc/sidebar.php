@@ -62,7 +62,7 @@
                             <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
 
                             <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10" style="display: none;">
-                                <a href="#" class="block px-4 py-2 text-sm text-[#080808] hover:bg-pink-800 hover:text-white">Admin</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-[#080808] hover:bg-pink-800 hover:text-white"><?php echo $_SESSION['username']->Username ?></a>
                                 <a href="<?=URLROOT?>/pages/logout" class="block px-4 py-2 text-sm text-[#080808] hover:bg-pink-800 hover:text-white">Logout</a>
                             </div>
                         </div>
