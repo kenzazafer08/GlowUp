@@ -17,7 +17,7 @@
     <!-- Carousel wrapper -->
     <div class="relative overflow-hidden h-96 ">
     <?php foreach ($data['categories'] as $cat) : ?>
-    <div class="flex items-center  ease-linear bg-cover bg-center bg-[url('<?= $cat->Image_cat ?>')]" data-carousel-item>
+    <div class="flex items-center  ease-linear bg-cover bg-center bg-[url('<?= Imagepath."/".$cat->Image_cat ?>')]" data-carousel-item>
            <div class="w-2/4 sm:w-1/4 h-full bg-black flex flex-col justify-center items-center">
 			<p class="text-white text-lg m-8 font-serif"><?= $cat->discription_cat ?></p>
 		    <a class="m-8 py-2 px-4 text-white rounded-lg bg-pink-900 cursor-pointer hover:drop-shadow-xl" href=""><?= $cat->name_cat ?></a>

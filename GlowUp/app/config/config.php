@@ -12,3 +12,4 @@
   // Site Name
   define('SITENAME', 'GlowUp');
   // App Version
+  define('Imagepath' , 'http://localhost/GlowUp_admin/public/img/upload');

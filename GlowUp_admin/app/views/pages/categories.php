@@ -9,7 +9,7 @@
     <?php foreach ($data['categorie'] as $categorie):?>
         <div class="w-64 h-94 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
-        <img class="rounded-t-lg h-2/4 w-full" src="<?=$categorie->Image_cat?>" alt="" />
+        <img class="rounded-t-lg h-2/4 w-full" src="<?=Imagepath."/".$categorie->Image_cat?>" alt="" />
     </a>
     <div class="p-5">
         <a href="#">

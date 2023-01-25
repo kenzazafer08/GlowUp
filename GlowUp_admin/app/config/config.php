@@ -12,3 +12,5 @@
   // Site Name
   define('SITENAME', 'GlowUp Administration');
   
+  define('Imagepath' , 'http://localhost/GlowUp_admin/public/img/upload');
+  

@@ -19,7 +19,7 @@ class categorie
     public function addCategorie($categorie){
         $this->db->query("INSERT INTO categorie(name_cat , image_cat , discription_cat) VALUES (:name , :image ,:description)");
         $this->db->bind("name", $categorie['name']);
-        $this->db->bind("image", $categorie['image']);
+        $this->db->bind("image", $categorie['imagepath']);
         $this->db->bind("description", $categorie['discription']);
         $this->db->execute();
         if($this->db->rowCount() < 1){
@@ -31,7 +31,7 @@ class categorie
         $this->db->query('UPDATE categorie SET name_cat = :name , image_cat = :image ,discription_cat = :description WHERE id_cat = :id');
         $this->db->bind('id' , $categorie['id']);
         $this->db->bind("name", $categorie['name']);
-        $this->db->bind("image", $categorie['image']);
+        $this->db->bind("image", $categorie['imagePath']);
         $this->db->bind("description", $categorie['discription']);
         $this->db->execute();
         if($this->db->rowCount() < 1){

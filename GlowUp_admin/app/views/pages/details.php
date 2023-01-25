@@ -9,7 +9,7 @@
     </div>
 <div class="flex sm:flex-row flex-col items-center justify-around">
 <div class="flex flex-col items-center w-2/4 my-8">
-    <img src="<?= $product->Image ?>" alt="" class="mb-4 w-[40%] border-2 border-pink-100 hover:shadow-sm cursor-pointer">
+    <img src="<?=Imagepath."/".$product->Image ?>" alt="" class="mb-4 w-[40%] border-2 border-pink-100 hover:shadow-sm cursor-pointer">
     <h1 class="text-sm font-bold font-serif"><?= $product->brand ?></h1>
     <p class="text-lg my-4"><?= $product->name?></p>
     <p class="font-bold mb-2"><?= $product->name_cat ?></p>

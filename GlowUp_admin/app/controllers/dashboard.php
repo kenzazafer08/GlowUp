@@ -52,7 +52,7 @@ public function addcategorie(){
     //process form
     $data = [
         'name' => $_POST['name'],
-        'image' => $_POST['image'],
+        'image' => $_FILES['image'],
         'discription' => $_POST['discription'],
         'name_err' => '',
         'image_err' => '',
@@ -69,6 +69,7 @@ public function addcategorie(){
         $data['discription_err'] = 'discirption must be filled';
       }
       if(empty($data['name_err']) && empty($data['image_err']) && empty($data['discription_err'])){
+        $data +=['imagepath' => $this->uploadImage($_FILES['image'])];
          $done =  $this->categorieModel->addcategorie($data);
          if($done){
           $data = [
@@ -100,15 +101,17 @@ public function addcategorie(){
   $this->view('pages/addcategorie', $data);
 }
 public function editcat($id = null ){
-  if($id ==null || $this->dashboardModel->getSingleProduct($id) == null){
+  if($id ==null || $this->categorieModel->getSinglecategorie($id) == null){
     redirect('dashboard');
   }
+  $categorie = $this->categorieModel->getSinglecategorie($id);
+
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //process form
     $data = [
          'id' => $id,
         'name' => $_POST['name'],
-        'image' => $_POST['image'],
+        'image' => $_FILES['image'],
         'discription' => $_POST['discription'],
         'name_err' => '',
         'image_err' => '',
@@ -118,16 +121,22 @@ public function editcat($id = null ){
       if (empty($data['name'])) {
           $data['name_err'] = 'name must be filled';
       }
-      if (empty($data['image'])) {
-          $data['image_err'] = 'image must be filled';
-      }
+      
       if (empty($data['discription'])) {
         $data['discription_err'] = 'discirption must be filled';
       }
-      if(empty($data['name_err']) && empty($data['image_err']) && empty($data['discription_err'])){
+      if(empty($data['name_err'])  && empty($data['discription_err'])){
+        if(!empty($_FILES['image']['name'])){
+          $data+=[
+            'imagePath' => $this->uploadImage($_FILES['image'])
+          ];
+        }else{
+          $data+=[
+            'imagePath' => $categorie->Image_cat
+          ];
+        }
          $done =  $this->categorieModel->edit($data);
          if($done){
-          $categorie = $this->categorieModel->getSinglecategorie($id);
           $data = [
             'id' => $categorie->id_cat,
             'name' => $categorie->name_cat,
@@ -190,19 +199,23 @@ public function deletecat($id = null){
 public function addproduct(){
   $categorie = $this->categorieModel->getCategories();
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $image = $_FILES['image'];
     for ($i = 0; $i < count($_POST['name']); $i++) {
     //process form
+    $image_dir = "./../public/img/upload/";
+    move_uploaded_file($image['tmp_name'][$i], $image_dir . $image['name'][$i]);
+    $imagepath = $image['name'][$i];
     $data = [
         'name' => $_POST['name'][$i],
-        'image' => $_POST['image'][$i],
         'discription' => $_POST['discription'][$i],
         'brand' => $_POST['brand'][$i],
         'howto' => $_POST['howto'][$i],
         'categorie' => $_POST['categorie'][$i],
+        'imagepath' =>$imagepath,
         'categories' => $categorie,
         'add' => '', 
     ];
-      $done =  $this->dashboardModel->addProduct($data);
+    $done =  $this->dashboardModel->addProduct($data);
          if($done){
           $data = [
         'name' => '',
@@ -234,13 +247,17 @@ public function addproduct(){
  $this->view('pages/Addproduct', $data);
 }
 public function editpro($id = null){
+  if($id ==null || $this->dashboardModel->getSingleProduct($id) == null){
+    redirect('dashboard');
+  }
+  $product = $this->dashboardModel->getSingleProduct($id);
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //process form
     $data = [
          'id' => $id,
         'name' => $_POST['name'],
         'brand' => $_POST['brand'],
-        'image' => $_POST['image'],
+        'image' => $_FILES['image'],
         'discription' => $_POST['discription'],
         'howto' => $_POST['howto'],
         'name_cat' => '',
@@ -255,9 +272,6 @@ public function editpro($id = null){
       if (empty($data['name'])) {
           $data['name_err'] = 'name must be filled';
       }
-      if (empty($data['image'])) {
-          $data['image_err'] = 'image must be filled';
-      }
       if (empty($data['brand'])) {
         $data['brand_err'] = 'brand must be filled';
     }
@@ -267,11 +281,19 @@ public function editpro($id = null){
       if (empty($data['howto'])) {
         $data['howto_err'] = 'image must be filled';
     }
-      if(empty($data['name_err']) && empty($data['image_err']) && empty($data['discription_err']) && empty($data['howto_err']) && empty($data['brand_err'])){
+      if(empty($data['name_err'])  && empty($data['discription_err']) && empty($data['howto_err']) && empty($data['brand_err'])){
+        if(!empty($_FILES['image']['name'])){
+          $data+=[
+            'imagepath' => $this->uploadImage($_FILES['image'])
+          ];
+        }else{
+          $data+=[
+            'imagepath' => $product->Image
+          ];
+        }
         $done =  $this->dashboardModel->edit($data);
         if($done){
         $categorie = $this->categorieModel->getcategories();
-        $product = $this->dashboardModel->getSingleProduct($id);
         $data = [
         'id' => $product->id,
         'name' => $product->name,
@@ -337,5 +359,10 @@ public function deletepro($id = null){
     ];
     $this->view('pages/products', $data);
   }
+}
+public function uploadImage($image) {
+  $image_dir = "./../public/img/upload/";
+  move_uploaded_file($image['tmp_name'], $image_dir . $image['name']);
+  return $image['name'];
 }
 }
