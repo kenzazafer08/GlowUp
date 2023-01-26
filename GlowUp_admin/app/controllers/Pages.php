@@ -7,9 +7,7 @@
      $this->categorieModel = $this->model('categorie');
     } 
     public function index(){
-      // Check the request method
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-       //process form
        $data = [
            'username' => $_POST['username'],
            'password' => $_POST['password'],
@@ -17,7 +15,6 @@
            'password_err' => '', 
        ];
 
-         //Validate username
          if (empty($data['username'])) {
              $data['username_err'] = 'username must be filled';
          }
@@ -32,27 +29,21 @@
          if (empty($data['username_err']) && empty($data['password_err'])) {
              $loggedInUser = $this->userModel->login($data['username'], $data['password']);
              if($loggedInUser){
-                 //Create session 
-                 $this->createUserSession($loggedInUser->username);
-                 $_SESSION['username'] = $data['username'];
                  $this->createUserSession($loggedInUser);
              }else{
                  $data['password_err'] = "Password is incorrect";
                  $this->view('pages/index',$data);
              }
          } else {
-             // Load view with errors 
              $this->view('pages/index', $data);
          }
      } else {
-         //init data 
          $data = [
              'username' => '',
              'password' => '',
              'username_err' => '',
              'password_err' => '',
          ];
-         //load form
          $this->view('pages/index', $data);
      }
      }

@@ -5,7 +5,6 @@ class user{
     public function __construct(){
         $this->db = new Database;
     }
-
     public function login($username, $password){
         $this->db->query("SELECT * FROM admin WHERE username = :username");
         $this->db->bind('username', $username);
@@ -20,14 +19,12 @@ class user{
         return false;
 
     }
-
-    // Check if user email is already taken 
     public function findUserByUsername($username){
         $this->db->query('SELECT * FROM admin WHERE username = :username');
         $this->db->bind('username', $username);
 
-        $row = $this->db->single();
-        //Check row
+        $this->db->single();
+
         if($this->db->rowCount() > 0){
             return true;
         }

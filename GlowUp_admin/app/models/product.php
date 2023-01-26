@@ -22,11 +22,12 @@ class Product
         return $this->db->resultSet();
     }
     public function addProduct($product){
-        $this->db->query("INSERT INTO produit(name , Image , discription , brand , HowTo , categorie) VALUES (:name , :image ,:description,:brand , :howto ,:categorie)");
+        $this->db->query("INSERT INTO produit(name , Image , discription , brand , prix , HowTo , categorie) VALUES (:name , :image ,:description,:brand ,:prix , :howto ,:categorie)");
         $this->db->bind("name", $product['name']);
         $this->db->bind("image", $product['imagepath']);
         $this->db->bind("description", $product['discription']);
         $this->db->bind("brand", $product['brand']);
+        $this->db->bind("prix", $product['prix']);
         $this->db->bind("howto", $product['howto']);
         $this->db->bind("categorie", $product['categorie']);
         $this->db->execute();
@@ -36,7 +37,7 @@ class Product
         return true;
     }
     public function edit($product){
-        $this->db->query('UPDATE produit SET name = :name , Image = :image ,discription = :description ,HowTo = :howto ,categorie = :id_cat ,brand = :brand WHERE id = :id');
+        $this->db->query('UPDATE produit SET name = :name , Image = :image ,discription = :description ,HowTo = :howto ,categorie = :id_cat ,brand = :brand ,prix = :prix WHERE id = :id');
         $this->db->bind('id' , $product['id']);
         $this->db->bind("name", $product['name']);
         $this->db->bind("image", $product['imagepath']);
@@ -44,6 +45,7 @@ class Product
         $this->db->bind("howto", $product['howto']);
         $this->db->bind("id_cat", $product['id_cat']);
         $this->db->bind("brand", $product['brand']);
+        $this->db->bind("prix", $product['prix']);
         $this->db->execute();
         if($this->db->rowCount() < 1){
             return false;

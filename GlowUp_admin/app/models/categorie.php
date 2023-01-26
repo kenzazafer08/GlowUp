@@ -52,5 +52,4 @@ class categorie
         $this->db->query('select count(*) as total from categorie');
         return $this->db->count();
     }
-
 }

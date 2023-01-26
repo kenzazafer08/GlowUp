@@ -22,9 +22,11 @@ public function index(){
 }
 public function products(){
   $products = $this->dashboardModel->getProducts();
+  $categories = $this->categorieModel->getCategories();
   $data = [  
   'delete' => '',
   'products' => $products ,
+  'categories' => $categories
   ];
   $this->view('pages/products', $data);
 }
@@ -49,7 +51,6 @@ public function details($id = null ){
 }
 public function addcategorie(){
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //process form
     $data = [
         'name' => $_POST['name'],
         'image' => $_FILES['image'],
@@ -70,7 +71,8 @@ public function addcategorie(){
       }
       if(empty($data['name_err']) && empty($data['image_err']) && empty($data['discription_err'])){
         $data +=['imagepath' => $this->uploadImage($_FILES['image'])];
-         $done =  $this->categorieModel->addcategorie($data);
+        if($data['imagepath'] !=null){
+          $done =  $this->categorieModel->addcategorie($data);
          if($done){
           $data = [
             'name' => '',
@@ -82,9 +84,11 @@ public function addcategorie(){
             'add' => 'Categorie added succesfuly', 
         ];
         $this->view('pages/addcategorie', $data);
-         }
-      }else{
+         }else{
         $data['add'] = 'something went wrong !';
+      $this->view('pages/addcategorie', $data);
+        }
+      }else $data['image_err'] = 'File is not an image.';
       $this->view('pages/addcategorie', $data);
       }
  }
@@ -209,6 +213,7 @@ public function addproduct(){
         'name' => $_POST['name'][$i],
         'discription' => $_POST['discription'][$i],
         'brand' => $_POST['brand'][$i],
+        'prix' => $_POST['prix'][$i],
         'howto' => $_POST['howto'][$i],
         'categorie' => $_POST['categorie'][$i],
         'imagepath' =>$imagepath,
@@ -222,6 +227,7 @@ public function addproduct(){
         'image' => '',
         'discription' => '',
         'brand' => '',
+        'prix' =>'',
         'howto' => '',
         'categorie' => '',
         'add' => 'Product added succesfuly', 
@@ -238,6 +244,7 @@ public function addproduct(){
   'image' => '',
   'discription' => '',
   'brand' => '',
+  'prix' =>'',
   'howto' => '',
   'categorie' => '',
   'categories' => $categorie,
@@ -257,6 +264,7 @@ public function editpro($id = null){
          'id' => $id,
         'name' => $_POST['name'],
         'brand' => $_POST['brand'],
+        'prix' => $_POST['prix'],
         'image' => $_FILES['image'],
         'discription' => $_POST['discription'],
         'howto' => $_POST['howto'],
@@ -298,6 +306,7 @@ public function editpro($id = null){
         'id' => $product->id,
         'name' => $product->name,
         'brand' => $product->brand,
+        'prix' => $product->prix,        
         'image' => $product->Image,
         'discription' => $product->discription,
         'howto' => $product->HowTo,
@@ -323,6 +332,7 @@ public function editpro($id = null){
   $data = [
   'id' => $product->id,
   'name' => $product->name,
+  'prix' => $product->prix,
   'brand' => $product->brand,
   'image' => $product->Image,
   'discription' => $product->discription,
@@ -361,8 +371,13 @@ public function deletepro($id = null){
   }
 }
 public function uploadImage($image) {
+    $image_type = exif_imagetype($image['tmp_name']);
+    if($image_type !== false) {
   $image_dir = "./../public/img/upload/";
   move_uploaded_file($image['tmp_name'], $image_dir . $image['name']);
   return $image['name'];
+    } else {
+    return null;
+    }
 }
 }

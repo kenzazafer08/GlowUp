@@ -14,7 +14,7 @@
         <input type="search" id="search"  class="block mx-auto p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-pink-500 focus:border-pink-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500" placeholder="Name..." required>
      </div>
 </form>
-<select id="categories" class="w-[40%] sm:mx-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500">
+<select id="categories" class="w-[40%] px-10 sm:mx-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500">
 <option selected>Choose a categorie</option>
 <?php foreach($data['categories'] as $categorie) : ?>
   <option value="<?=$categorie->id_cat ?>"><?=$categorie->name_cat?></option>
@@ -27,7 +27,7 @@
             <img src="<?=Imagepath."/".$product->Image ?>" alt="" class="h-2/4 w-3/4">
             <h1 class="font-bold text-lg font-serif"><?= $product->brand ?></h1>
             <p class="text-center text-sm"><?= $product->name ?></p>
-            <p class="text-center text-sm text-pink-900"><?= $product->name_cat ?></p>
+            <p class="text-center text-sm text-pink-900 font-bold"><?= $product->prix ?>DH</p>
         </div></a>
         <?php endforeach ?>    
         </div>
